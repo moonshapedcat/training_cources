@@ -10,7 +10,8 @@ public class PointTests {
   public void testArea(){
   Point p = new Point(1,2, 3,4);
 
- assert p.distance()==2.8284271247461903 ;
+ assert p.distance() == 2.8284271247461903 ;
+
 
 
 
