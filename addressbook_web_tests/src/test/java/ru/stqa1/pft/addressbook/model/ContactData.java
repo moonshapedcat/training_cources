@@ -1,43 +1,43 @@
 package ru.stqa1.pft.addressbook.model;
 
 public class ContactData {
-  private final String yourName;
-  private final String yourMidlename;
-  private final String yourLastname;
-  private final String yourNickname;
-  private final String yourTitle;
-  private final String yourCompanyName;
+  private final String name;
+  private final String midleName;
+  private final String lastName;
+  private final String nickname;
+  private final String usertitle;
+  private final String userCompany;
 
-  public ContactData(String yourName, String yourMidlename, String yourLastname, String yourNickname, String yourTitle, String yourCompanyName) {
-    this.yourName = yourName;
-    this.yourMidlename = yourMidlename;
-    this.yourLastname = yourLastname;
-    this.yourNickname = yourNickname;
-    this.yourTitle = yourTitle;
-    this.yourCompanyName = yourCompanyName;
+  public ContactData(String name, String midleName, String lastName, String nickname, String usertitle, String userCompany) {
+    this.name = name;
+    this.midleName = midleName;
+    this.lastName = lastName;
+    this.nickname = nickname;
+    this.usertitle = usertitle;
+    this.userCompany = userCompany;
   }
 
-  public String getYourName() {
-    return yourName;
+  public String getName() {
+    return name;
   }
 
-  public String getYourMidlename() {
-    return yourMidlename;
+  public String getMidleName() {
+    return midleName;
   }
 
-  public String getYourLastname() {
-    return yourLastname;
+  public String getLastName() {
+    return lastName;
   }
 
-  public String getYourNickname() {
-    return yourNickname;
+  public String getNickname() {
+    return nickname;
   }
 
-  public String getYourTitle() {
-    return yourTitle;
+  public String getUsertitle() {
+    return usertitle;
   }
 
-  public String getYourCompanyName() {
-    return yourCompanyName;
+  public String getUserCompany() {
+    return userCompany;
   }
 }
