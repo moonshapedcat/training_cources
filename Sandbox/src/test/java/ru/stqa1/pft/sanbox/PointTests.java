@@ -13,5 +13,6 @@ public class PointTests {
  assert p.distance()==2.8284271247461903 ;
 
 
+
   }
 }
