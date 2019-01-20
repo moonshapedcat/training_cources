@@ -29,6 +29,7 @@ public class ApplicationManager {
 
   public void fillContactForm(ContactData contactData) {
     contactHelper.fillContactForm(contactData);
+    //заполнение формы
    }
 
   public void initContact() {
