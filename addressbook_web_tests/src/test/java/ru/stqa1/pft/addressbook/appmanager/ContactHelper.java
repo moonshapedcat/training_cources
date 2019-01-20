@@ -4,36 +4,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa1.pft.addressbook.model.ContactData;
 
-public class ContactHelper {
-  public ChromeDriver wd;
+public class ContactHelper extends HelperBase{
 
   public ContactHelper(ChromeDriver wd) {
 
-    this.wd = wd;
+    super(wd);
   }
 
   public void fillContactForm(ContactData contactData) {
     //wd.findElement(By.linkText("add new")).click();
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getName());
-    wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("nickname")).click();
-    wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys(contactData.getNickname());
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("title")).click();
-    wd.findElement(By.name("title")).clear();
-    wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("company")).click();
-    wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(contactData.getCompanyName());
+    type(By.name("firstname"), contactData.getName());
+    type(By.name("middlename"), contactData.getMiddlename());
+    click(By.name("theform"));
+    type(By.name("lastname"), contactData.getLastname());
+    click(By.name("theform"));
+    type(By.name("nickname"), contactData.getNickname());
+    click(By.name("theform"));
+    type(By.name("title"), contactData.getTitle());
+    click(By.name("theform"));
+    type(By.name("company"), contactData.getCompanyName());
   }
 }
