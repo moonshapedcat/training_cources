@@ -28,11 +28,15 @@ public class ContactHelper extends HelperBase{
     click(By.name("selected[]"));
   }
   public void editContact(){
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='nonenonenonenone'])[1]/following::img[2]"));;
+    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='nonenonenonenone'])[1]/following::img[2]"));
   }
 
   public void updateContact(){
     click(By.name("update"));
   }
+  public void deleteContact(){
+    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
+  }
+
 }
 
