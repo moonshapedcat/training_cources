@@ -1,11 +1,11 @@
-/*package ru.stqa1.pft.addressbook.appmanager;
+package ru.stqa1.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa1.pft.addressbook.model.ContactData;
 
 public class ContactHelper {
-  private ChromeDriver wd;
+  public ChromeDriver wd;
 
   public ContactHelper(ChromeDriver wd) {
 
@@ -13,6 +13,7 @@ public class ContactHelper {
   }
 
   public void fillContactForm(ContactData contactData) {
+    //wd.findElement(By.linkText("add new")).click();
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(contactData.getName());
@@ -35,4 +36,4 @@ public class ContactHelper {
     wd.findElement(By.name("company")).clear();
     wd.findElement(By.name("company")).sendKeys(contactData.getCompanyName());
   }
-}*/
+}
