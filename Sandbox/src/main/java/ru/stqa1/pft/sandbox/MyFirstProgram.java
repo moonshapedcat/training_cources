@@ -5,8 +5,9 @@ public class MyFirstProgram {
   public static void main(String[] args) {
 
 
-    Point p = new Point(1,2, 3, 4);
-    System.out.println("Расстояние между точками с координатами "  +p.a +";" +p.b + " и " + p.c +";" +p.d + " равно " + p.distance());
+    Point p1 = new Point(1,2);
+    Point p2 = new Point(3,4);
+    System.out.println("Расстояние между точками с координатами "  +p1.a +";" +p1.b + " и " + p2.a +";" +p2.b + " равно " + p1.distance(p2));
   }
 
   }
