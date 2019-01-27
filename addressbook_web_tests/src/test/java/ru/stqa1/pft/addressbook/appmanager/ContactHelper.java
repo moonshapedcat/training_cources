@@ -24,4 +24,8 @@ public class ContactHelper extends HelperBase{
     click(By.name("theform"));
     type(By.name("company"), contactData.getCompanyName());
   }
+
+  public void initContact() {
+    wd.findElement(By.linkText("add new")).click();
+  }
 }

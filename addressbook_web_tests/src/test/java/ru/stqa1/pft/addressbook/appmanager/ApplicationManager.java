@@ -27,14 +27,6 @@ public class ApplicationManager {
   }
 
 
-  public void fillContactForm(ContactData contactData) {
-    contactHelper.fillContactForm(contactData);
-   }
-
-  public void initContact() {
-    wd.findElement(By.linkText("add new")).click();
-  }
-
   public void stop() {
     wd.quit();
   }
@@ -65,4 +57,6 @@ public class ApplicationManager {
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
   }
+
+  public ContactHelper getContactHelper() {return contactHelper;}
 }
