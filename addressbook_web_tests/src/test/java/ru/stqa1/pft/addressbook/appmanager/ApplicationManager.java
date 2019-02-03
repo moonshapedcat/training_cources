@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import ru.stqa1.pft.addressbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +24,6 @@ public class ApplicationManager {
     navigationHelper = new NavigationHelper(wd);
     sessionHelper.login("admin", "secret");
   }
-
 
   public void stop() {
     wd.quit();
@@ -58,5 +56,7 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public ContactHelper getContactHelper() {return contactHelper;}
+  public ContactHelper getContactHelper () {
+    return contactHelper;
+  }
 }
