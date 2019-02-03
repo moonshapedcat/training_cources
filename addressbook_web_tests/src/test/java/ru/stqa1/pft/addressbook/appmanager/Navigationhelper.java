@@ -3,10 +3,9 @@ package ru.stqa1.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Navigationhelper extends Helperbase {
+public class NavigationHelper extends HelperBase{
 
-  public Navigationhelper(ChromeDriver wd) {
-
+  public NavigationHelper(ChromeDriver wd) {
     super(wd);
   }
 

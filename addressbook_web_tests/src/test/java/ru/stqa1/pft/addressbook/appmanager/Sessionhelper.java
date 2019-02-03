@@ -3,9 +3,9 @@ package ru.stqa1.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Sessionhelper extends Helperbase{
+public class SessionHelper extends HelperBase {
 
-  public Sessionhelper(ChromeDriver wd) {
+  public SessionHelper(ChromeDriver wd) {
 
     super(wd);
   }
@@ -15,4 +15,5 @@ public class Sessionhelper extends Helperbase{
     type(By.name("pass"),password);
     click(By.xpath("//input[@value='Login']"));
   }
+
 }
