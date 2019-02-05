@@ -1,6 +1,7 @@
 package ru.stqa1.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import ru.stqa1.pft.addressbook.model.ContactData;
 
@@ -42,5 +43,6 @@ public class ContactHelper extends HelperBase{
   public void deleteContact(){
     click(By.xpath("//input[@value='Delete']"));
   }
+
 }
 

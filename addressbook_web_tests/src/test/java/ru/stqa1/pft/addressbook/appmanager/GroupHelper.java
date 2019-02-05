@@ -13,7 +13,7 @@ public class GroupHelper extends HelperBase{
 
   public void submitGroupCreation() {
     click(By.name("submit"));
-    click(By.linkText("Logout"));
+   // click(By.linkText("Logout"));
   }
 
   public void fillGroupForm(GroupData groupData) {
@@ -46,5 +46,16 @@ public class GroupHelper extends HelperBase{
 
   public void submitGroupModification() {
     click(By.name("update"));
+  }
+
+  public void createGroup(GroupData groupData) {
+    initGroupCreation();
+    fillGroupForm(groupData);
+    submitGroupCreation();
+    returnToGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
