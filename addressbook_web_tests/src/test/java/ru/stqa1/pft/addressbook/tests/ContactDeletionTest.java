@@ -7,6 +7,9 @@ import ru.stqa1.pft.addressbook.model.ContactData;
 public class ContactDeletionTest extends TestBase {
   @Test
   public void ContactDeletionTest() {
+    if (!app.getContactHelper().isThereAContact()){
+      app.getContactHelper().createContact(new ContactData("Ivan", "Ivanovich", "Ivanov", "Vanya", "MyTitle", "MyCompany"));
+    }
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteContact();
     app.wd.switchTo().alert().accept();
