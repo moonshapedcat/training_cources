@@ -9,7 +9,7 @@ import ru.stqa1.pft.addressbook.model.GroupData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
 
@@ -22,11 +22,11 @@ public class ContactHelper extends HelperBase{
     type(By.name("middlename"), contactData.getMiddlename());
     //click(By.name("theform"));
     type(By.name("lastname"), contactData.getLastname());
-   // click(By.name("theform"));
+    // click(By.name("theform"));
     type(By.name("nickname"), contactData.getNickname());
-  //  click(By.name("theform"));
+    //  click(By.name("theform"));
     type(By.name("title"), contactData.getTitle());
-  //  click(By.name("theform"));
+    //  click(By.name("theform"));
     type(By.name("company"), contactData.getCompanyName());
   }
 
@@ -34,28 +34,31 @@ public class ContactHelper extends HelperBase{
     wd.findElement(By.linkText("add new")).click();
   }
 
-  public void selectContact(int index){
+  public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
-   // click(By.name("selected[]"));
+    // click(By.name("selected[]"));
   }
 
-  public void submitContact(){
+  public void submitContact() {
     click(By.name("submit"));
   }
-  public void editContact(){
-    click(By.cssSelector("img[alt=\"Edit\"]"));
-      }
 
-  public void updateContact(){
+  public void editContact() {
+    click(By.cssSelector("img[alt=\"Edit\"]"));
+  }
+
+  public void updateContact() {
     click(By.name("update"));
   }
-  public void deleteContact(){
+
+  public void deleteContact() {
     click(By.xpath("//input[@value='Delete']"));
   }
+
   public void createContact(ContactData contactData) {
-   initContact();
-   fillContactForm(contactData);
-   submitContact();
+    initContact();
+    fillContactForm(contactData);
+    submitContact();
   }
 
   public boolean isThereAContact() {
@@ -63,20 +66,21 @@ public class ContactHelper extends HelperBase{
   }
 
   public int getContactCount(int i) {
-    return  wd.findElements(By.name("selected[]")).size();
+    return wd.findElements(By.name("selected[]")).size();
   }
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("selected[]"));
     for (WebElement element : elements) {
-     editContact();
-     String name = wd.findElement(By.name("firstname")).getAttribute("value");
-     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
-     updateContact();
+      String id = wd.findElement(By.tagName("input")).getAttribute("value");
+      editContact();
+      String name = wd.findElement(By.name("firstname")).getAttribute("value");
+      String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+      updateContact();
 
-     ContactData contactData = new ContactData(name, null, lastname, null, null, null);
-     contacts.add(contactData);
+      ContactData contactData = new ContactData(name, null, lastname, null, null, null);
+      contacts.add(contactData);
     }
 
     return contacts;
