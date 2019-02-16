@@ -3,7 +3,7 @@ package ru.stqa1.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private String id;
+  private int id;
   private final String name;
   private final String middlename;
   private final String lastname;
@@ -11,11 +11,11 @@ public class ContactData {
   private final String title;
   private final String companyName;
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
-  public ContactData(String id, String name, String middlename, String lastname, String nickname, String title, String companyName) {
+  public ContactData(int id, String name, String middlename, String lastname, String nickname, String title, String companyName) {
     this.id = id;
     this.name = name;
     this.middlename = middlename;
@@ -25,12 +25,16 @@ public class ContactData {
     this.companyName = companyName;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(id, that.id) &&
+    return id == that.id &&
             Objects.equals(name, that.name) &&
             Objects.equals(lastname, that.lastname);
   }
@@ -43,14 +47,14 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", name='" + name + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
   }
 
   public ContactData(String name, String middlename, String lastname, String nickname, String title, String companyName) {
-    this.id = null;
+    this.id = 0;
     this.name = name;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -82,4 +86,6 @@ public class ContactData {
   public String getCompanyName() {
     return companyName;
   }
+
+
 }
