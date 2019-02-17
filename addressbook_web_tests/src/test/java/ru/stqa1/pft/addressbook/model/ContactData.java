@@ -3,30 +3,51 @@ package ru.stqa1.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
-  private final String name;
-  private final String middlename;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String companyName;
+  private int id = Integer.MAX_VALUE;
+  private String name;
+  private String middlename;
+  private String lastname;
+  private String nickname;
+  private String title;
+  private String companyName;
 
   public int getId() {
     return id;
   }
 
-  public ContactData(int id, String name, String middlename, String lastname, String nickname, String title, String companyName) {
-    this.id = id;
+  public ContactData withName(String name) {
     this.name = name;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.companyName = companyName;
+    return this;
   }
 
-  public void setId(int id) {
+  public ContactData withMiddlename(String middlename) {
+    this.middlename = middlename;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompanyName(String companyName) {
+    this.companyName = companyName;
+    return this;
+  }
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
   @Override
@@ -51,16 +72,6 @@ public class ContactData {
             ", name='" + name + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
-  }
-
-  public ContactData(String name, String middlename, String lastname, String nickname, String title, String companyName) {
-    this.id = 0;
-    this.name = name;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.companyName = companyName;
   }
 
   public String getName() {
