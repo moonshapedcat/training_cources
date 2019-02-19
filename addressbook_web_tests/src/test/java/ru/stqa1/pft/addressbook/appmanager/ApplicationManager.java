@@ -48,6 +48,7 @@ public class ApplicationManager {
     }
   }
 
+
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }
@@ -59,4 +60,10 @@ public class ApplicationManager {
   public ContactHelper getContactHelper () {
     return contactHelper;
   }
+
+  public void closeAlert() {
+    wd.switchTo().alert().accept();
+    wd.findElement(By.cssSelector("div.msgbox"));
+  }
 }
+

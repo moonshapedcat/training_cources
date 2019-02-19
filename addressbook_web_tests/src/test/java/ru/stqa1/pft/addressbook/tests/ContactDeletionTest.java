@@ -9,8 +9,7 @@ public class ContactDeletionTest extends TestBase {
   public void ContactDeletionTest() {
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteContact();
-    app.wd.switchTo().alert().accept();
-    app.wd.findElement(By.cssSelector("div.msgbox"));
+    app.closeAlert();
   }
 
 }
