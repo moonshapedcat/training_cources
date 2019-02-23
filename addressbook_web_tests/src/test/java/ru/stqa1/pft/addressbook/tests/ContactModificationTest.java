@@ -8,6 +8,7 @@ import ru.stqa1.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactModificationTest extends TestBase{
   @BeforeMethod
@@ -19,18 +20,16 @@ public class ContactModificationTest extends TestBase{
 
   @Test
   public void ContactModificationTest() {
-    List<ContactData> before = app.contact().list();
-    int index = before.size()-1;
-    ContactData contactData = new ContactData().withId(before.get(index).getId()).withName("Ivan").withMiddlename("Ivanovich").withLastname("Ivanov").withNickname("Vanya").withTitle("MyTitle").withCompanyName("MyCompany");
-    app.contact().modify(index, contactData);
-    List<ContactData> after = app.contact().list();
+    Set<ContactData> before = app.contact().all();
+    ContactData modifiedContact = before.iterator().next();
+    ContactData contactData = new ContactData()
+            .withId(modifiedContact.getId()).withName("Ivan").withMiddlename("Ivanovich").withLastname("Ivanov").withNickname("Vanya").withTitle("MyTitle").withCompanyName("MyCompany");
+    app.contact().modify(contactData);
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index);
+    before.remove(modifiedContact);
     before.add(contactData);
-    Comparator<? super ContactData> byId = (c1, c2)->Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 
