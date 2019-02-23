@@ -75,4 +75,9 @@ public class ApplicationManager {
   public ContactHelper contact() {
     return contactHelper;
   }
+
+  public void closeAlert() {
+    wd.switchTo().alert().accept();
+    wd.findElement(By.cssSelector("div.msgbox"));
+  }
 }
