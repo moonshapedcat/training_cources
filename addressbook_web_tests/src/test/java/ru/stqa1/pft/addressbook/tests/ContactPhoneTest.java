@@ -42,3 +42,4 @@ public class ContactPhoneTest extends TestBase {
   }
 
 }
+

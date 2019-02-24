@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import ru.stqa1.pft.addressbook.model.ContactData;
 import ru.stqa1.pft.addressbook.model.Contacts;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class ContactHelper extends HelperBase {
@@ -92,10 +91,13 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
       String name = element.findElement(By.xpath("./td[3]")).getText();
       String lastname = element.findElement(By.xpath("./td[2]")).getText();
+      String address = element.findElement(By.xpath("./td[4]")).getText();
+      String allEmails = element.findElement(By.xpath("./td[5]")).getText();
       String allPhones = element.findElement(By.xpath("./td[6]")).getText();
 
+
       contacts.add(new ContactData().withId(id).withName(name).withLastname(lastname)
-              .withAllPhones(allPhones));
+              .withAllPhones(allPhones).withAddress(address).withAllEmails(allEmails));
     }
 
     return contacts;
@@ -108,9 +110,14 @@ public class ContactHelper extends HelperBase {
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute(("value"));
+    String email = wd.findElement(By.name("email")).getAttribute(("value"));
+    String email2 = wd.findElement(By.name("email2")).getAttribute(("value"));
+    String email3 = wd.findElement(By.name("email3")).getAttribute(("value"));
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname)
-            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address)
+            .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
   private void initContactModificationById(int id) {
