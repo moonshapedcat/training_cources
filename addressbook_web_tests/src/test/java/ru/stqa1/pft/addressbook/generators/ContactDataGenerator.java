@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ContactDataGenerator {
 
-  @Parameter(names= "-c", description = "Group count")
+  @Parameter(names= "-c", description = "Contact count")
   public int count;
 
   @Parameter(names= "-f", description = "target file")
@@ -44,8 +44,8 @@ public class ContactDataGenerator {
   private void save(List<ContactData> contacts, File file) throws IOException {
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", contact.getName(), contact.getLastname(), contact.getMiddlename(), contact.getTitle(), contact.getCompanyName(),
-              contact.getHomePhone(), contact.getMobilePhone()));
+      writer.write(String.format("%s;%s;%s;%s;%s;%s\n", contact.getName(), contact.getMiddlename(), contact.getLastname(),contact.getNickname(), contact.getCompanyName(),
+              contact.getTitle()));
     }
     writer.close();
   }
@@ -53,10 +53,9 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i=0; i<count; i++){
-      contacts.add(new ContactData().withName(String.format("name %s", i))
-              .withLastname(String.format("lastname %s", i)).withMiddlename(String.format("midllename %s", i))
-              .withTitle(String.format("title %s", i)).withCompanyName(String.format("company %s", i)).withHomePhone(String.format("homephone %s", i))
-              .withMobilePhone(String.format("mobilephone %s", i)));
+      contacts.add(new ContactData().withName(String.format("name %s", i)).withMiddlename(String.format("middlename %s", i)).
+              withLastname(String.format("middlename %s", i)).withNickname(String.format("nickname %s", i)).
+              withCompanyName(String.format("company %s", i)).withTitle(String.format("title %s", i)));
     }
     return contacts;
   }

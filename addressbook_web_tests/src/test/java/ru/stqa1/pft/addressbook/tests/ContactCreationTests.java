@@ -20,10 +20,10 @@ public class ContactCreationTests extends TestBase{
     List<Object[]> list =  new ArrayList<Object[]>();
     list.add(new Object[] {new ContactData().withName("name 1").withMiddlename("middlename1").withLastname("lastname1")
             .withNickname("nickname1").withCompanyName("companyName1").withTitle("title1")});
-    list.add(new Object[] {new ContactData().withName("name 2").withMiddlename("middlename1").withLastname("lastname1")
-            .withNickname("nickname1").withCompanyName("companyName1").withTitle("title1")});
-    list.add(new Object[] {new ContactData().withName("name 1").withMiddlename("middlename1").withLastname("lastname1")
-            .withNickname("nickname1").withCompanyName("companyName1").withTitle("title1")});
+    list.add(new Object[] {new ContactData().withName("name 2").withMiddlename("middlename2").withLastname("lastname2")
+            .withNickname("nickname2").withCompanyName("companyName2").withTitle("title2")});
+    list.add(new Object[] {new ContactData().withName("name 3").withMiddlename("middlename3").withLastname("lastname3")
+            .withNickname("nickname3").withCompanyName("companyName3").withTitle("title3")});
     return list.iterator();
   }
 
