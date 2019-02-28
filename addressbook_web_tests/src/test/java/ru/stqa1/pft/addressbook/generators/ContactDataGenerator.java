@@ -3,7 +3,9 @@ package ru.stqa1.pft.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.thoughtworks.xstream.XStream;
 import ru.stqa1.pft.addressbook.model.ContactData;
+import ru.stqa1.pft.addressbook.model.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,8 +22,8 @@ public class ContactDataGenerator {
   @Parameter(names= "-f", description = "target file")
   public String file;
 
-  /*@Parameter(names= "-d", description = "data format")
-  public String format;*/
+  @Parameter(names= "-d", description = "data format")
+  public String format;
 
   public static void main(String[] args) throws IOException {
     ContactDataGenerator generator = new ContactDataGenerator();
@@ -38,10 +40,27 @@ public class ContactDataGenerator {
 
   private void run() throws IOException {
     List<ContactData> contacts = generateContacts(count);
-    save(contacts, new File(file));
+    if (format.equals("csv")) {
+      saveAsCSV(contacts, new File(file));
+    } else if (format.equals("xml")) {
+      saveAsXML(contacts, new File(file));
+    }
+    else {
+      System.out.println("Unrecognized format" + format);
+    }
+
   }
 
-  private void save(List<ContactData> contacts, File file) throws IOException {
+  private void saveAsXML(List<ContactData> contacts, File file) throws IOException {
+    XStream xstream = new XStream();
+    xstream.processAnnotations(ContactData.class);
+    String xml = xstream.toXML(contacts);
+    Writer writer = new FileWriter(file);
+    writer.write(xml);
+    writer.close();
+  }
+
+  private void saveAsCSV(List<ContactData> contacts, File file) throws IOException {
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
       writer.write(String.format("%s;%s;%s;%s;%s;%s\n", contact.getName(), contact.getMiddlename(), contact.getLastname(),contact.getNickname(), contact.getCompanyName(),
