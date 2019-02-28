@@ -16,14 +16,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTests extends TestBase{
 
   @DataProvider
-  public Iterator<Object[]> validContacts() throws FileNotFoundException {
+  public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list =  new ArrayList<Object[]>();
-    list.add(new Object[] {new ContactData().withName("name 1").withMiddlename("middlename1").withLastname("lastname1")
-            .withNickname("nickname1").withCompanyName("companyName1").withTitle("title1")});
-    list.add(new Object[] {new ContactData().withName("name 2").withMiddlename("middlename2").withLastname("lastname2")
-            .withNickname("nickname2").withCompanyName("companyName2").withTitle("title2")});
-    list.add(new Object[] {new ContactData().withName("name 3").withMiddlename("middlename3").withLastname("lastname3")
-            .withNickname("nickname3").withCompanyName("companyName3").withTitle("title3")});
+   BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.csv")));
+   String line = reader.readLine();
+   while (line !=null){
+     String[] split = line.split(";");
+     list.add(new Object[] {new ContactData().withName(split[0]).withMiddlename(split[0]).withLastname(split[0])
+             .withNickname(split[0]).withCompanyName(split[0]).withTitle(split[0])});
+     line = reader.readLine();
+   }
     return list.iterator();
   }
 
