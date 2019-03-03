@@ -19,13 +19,15 @@ public class ApplicationManager {
   public NavigationHelper navigationHelper;
   public GroupHelper groupHelper;
   public String browser;
+  public DbHelper dbHelper;
+
 
   public ApplicationManager(String browser) {
     this.browser = browser;
   }
 
   public void init() {
-
+    dbHelper = new DbHelper();
     if (browser.equals(BrowserType.CHROME)) {
      wd = new ChromeDriver();
     } else if (browser.equals(BrowserType.FIREFOX)){
@@ -79,5 +81,9 @@ public class ApplicationManager {
   public void closeAlert() {
     wd.switchTo().alert().accept();
     wd.findElement(By.cssSelector("div.msgbox"));
+  }
+
+  public DbHelper db(){
+    return dbHelper;
   }
 }
