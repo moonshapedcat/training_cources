@@ -23,13 +23,13 @@ public class ContactData {
   @Column(name = "lastname")
   private String lastname;
 
-  @Transient
+  @Column(name = "nickname")
   private String nickname;
 
-  @Transient
+  @Column(name = "company")
   private String companyName;
 
-  @Transient
+  @Column(name = "title")
   private String title;
 
  @Transient
@@ -47,7 +47,8 @@ public class ContactData {
   @Type(type = "text")
   private String workPhone;
 
-  @Transient
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
 
   @Transient
