@@ -46,8 +46,13 @@ public class ContactHelper extends HelperBase {
     click(By.cssSelector("img[alt=\"Edit\"]"));
   }
 
-  public void editContact(By locator) {
+ /* public void editContact(By locator) {
     click(locator);
+  }*/
+
+  public void editContact(int id) {
+    WebElement element = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+    element.findElement(By.xpath("./../../td[8]/a")).click();
   }
 
   public void updateContact() {
@@ -74,7 +79,8 @@ public class ContactHelper extends HelperBase {
 
   public void modify(ContactData contactData) {
     selectContactByID(contactData.getId());
-    editContact();
+    //editContact();
+    editContact(contactData.getId());
     fillContactForm(contactData);
     updateContact();
   }
