@@ -8,9 +8,8 @@ import ru.stqa1.pft.addressbook.model.GroupData;
 import ru.stqa1.pft.addressbook.model.Groups;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.stqa1.pft.addressbook.tests.TestBase.app;
 
-public class AddContactToGroupTest {
+public class AddContactToGroupTest extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
     if (app.db().contacts().size() == 0){
