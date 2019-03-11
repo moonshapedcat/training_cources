@@ -13,17 +13,17 @@ import java.rmi.RemoteException;
 
 public class TestBase {
 
-  public static ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
+  public static ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
-  @BeforeSuite
+ @BeforeSuite
   public void setUp() throws Exception {
     app.init();
-    app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
+    /*app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");*/
   }
 
   @AfterSuite
   public void tearDown() throws Exception {
-    app.ftp().restore("config_inc.php.bak", "config_inc.php");
+   /* app.ftp().restore("config_inc.php.bak", "config_inc.php");*/
     app.stop();
   }
 

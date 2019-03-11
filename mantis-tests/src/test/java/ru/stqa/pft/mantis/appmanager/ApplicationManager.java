@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import ru.stqa.pft.mantis.model.MantisUser;
+import ru.stqa.pft.mantis.model.UserData;
 
 import java.io.File;
 import java.io.FileReader;
@@ -28,6 +29,8 @@ public class ApplicationManager {
   private AdminHelper adminHelper;
   private UserHelper userHelper;
   private SoapHelper soapHelper;
+  private DBHelper dbHelper;
+  private NavigationHelper navigationHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -36,6 +39,7 @@ public class ApplicationManager {
   public void init() throws IOException {
     properties = new Properties();
     properties.load(new FileReader(new File("src/test/resources/local.properties")));
+    dbHelper = new DBHelper();
   }
 
   public void stop() {
@@ -56,7 +60,7 @@ public class ApplicationManager {
     try {
       wd.switchTo().alert();
       return true;
-    } catch (NoAlertPresentException e){
+    } catch (NoAlertPresentException e) {
       return false;
     }
   }
@@ -84,7 +88,7 @@ public class ApplicationManager {
     if (wd == null) {
       if (browser.equals(BrowserType.CHROME)) {
         wd = new ChromeDriver();
-      } else if (browser.equals(BrowserType.FIREFOX)){
+      } else if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
       } else if (browser.equals(BrowserType.IE))
         wd = new InternetExplorerDriver();
@@ -121,9 +125,9 @@ public class ApplicationManager {
     return userHelper;
   }
 
-  public MantisUser GetTestUser() {
-    // stub, here we should get something from db
-    return new MantisUser(2, "user1551629138176", "user1551629138176@localhost.localdomain");
+  public UserData GetTestUser() {
+    // ???
+    return new UserData(2, "user1551629138176", "user1551629138176@localhost.localdomain");//????
   }
 
   public SoapHelper SoapHelper() {
@@ -132,4 +136,19 @@ public class ApplicationManager {
     }
     return soapHelper;
   }
+
+   public DBHelper db(){
+    if(dbHelper == null){
+      dbHelper = new DBHelper();
+    }
+    return dbHelper;}
+
+  public NavigationHelper navigate() {
+    if (navigationHelper == null) {
+      navigationHelper = new NavigationHelper(this);
+    }
+    return navigationHelper;
+  }
 }
+
+
