@@ -27,12 +27,12 @@ public class DeleteContactFromGroupTest extends TestBase{
     ContactData contact = app.db().contacts().iterator().next();
     Groups groups = app.db().groups();
     GroupData group = groups.iterator().next();
-    app.goTo().GroupForAddition(groups.iterator().next().getName());
-    if(! app.group().isThereContact()){
+    app.goTo().GroupForAddition(group.getName());
+    if(! group.isThereContact(contact)){
       app.goTo().backToLogo();
       app.contact().addToGroup(contact,group);
       app.goTo().homePage();
-      app.goTo().GroupForAddition(groups.iterator().next().getName());
+      app.goTo().GroupForAddition(group.getName());
     }
 
     app.contact().deleteContactFromGroup(contact);

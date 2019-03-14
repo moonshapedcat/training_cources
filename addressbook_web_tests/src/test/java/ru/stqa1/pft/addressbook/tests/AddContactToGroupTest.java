@@ -26,11 +26,11 @@ public class AddContactToGroupTest extends TestBase {
   //  app.goTo().homePage();
     ContactData contact = app.db().contacts().iterator().next();
     Groups groups = app.db().groups();
-    app.goTo().GroupForAddition(groups.iterator().next().getName());
-    if(app.group().isThereContact()){
+    GroupData group = groups.iterator().next();
+    app.goTo().GroupForAddition(group.getName());
+    if(group.isThereContact(contact)){
       app.contact().deleteContactFromGroup(contact);
     }
-    GroupData group = groups.iterator().next();
     groups.removeAll(contact.getGroups());
     app.goTo().backToLogo();
     app.contact().addToGroup(contact,group);

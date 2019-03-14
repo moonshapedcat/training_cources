@@ -33,7 +33,8 @@ public class GroupData {
     return new Contacts(contacts);
   }
 
-  @ManyToMany (mappedBy = "groups")
+  //@ManyToMany (fetch = FetchType.EAGER)
+  @ManyToMany (mappedBy = "groups", fetch = FetchType.EAGER)
   private Set<ContactData> contacts = new HashSet<ContactData>();
 
   public int getId() {
@@ -96,5 +97,8 @@ public class GroupData {
     return footer;
   }
 
+  public boolean isThereContact(ContactData contact) {
+    return contacts.contains(contact);
+  }
 }
 
