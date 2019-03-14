@@ -19,6 +19,7 @@ public class AdminHelper extends HelperBase {
     }
 
     public void ResetUserPassord(String username) {
+        click(By.linkText("Manage"));
         click(By.linkText("Manage Users"));
         click(By.linkText(username));
         click(By.cssSelector("input[value='Reset Password']"));
