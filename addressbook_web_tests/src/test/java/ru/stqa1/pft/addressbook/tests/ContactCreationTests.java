@@ -5,10 +5,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa1.pft.addressbook.model.ContactData;
 import ru.stqa1.pft.addressbook.model.Contacts;
-import ru.stqa1.pft.addressbook.model.GroupData;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,11 +38,12 @@ public class ContactCreationTests extends TestBase{
   @Test(dataProvider = "validContacts")
   public void testContactCreation(ContactData contactData) throws Exception {
    // String[] names = new String[] {"test1", "test2", "test3"};
-      Contacts before = app.contact().all();
+      Contacts before = app.db().contacts();
       app.contact().create(contactData);
-      Contacts after = app.contact().all();
+      Contacts after = app.db().contacts();
       assertThat(after.size(),equalTo(before.size() +1));
       assertThat(after, equalTo(before.withAdded(contactData.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+      verifyContactListOnUI();
     }
 
 }

@@ -2,16 +2,39 @@ package ru.stqa1.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("group")
+@Entity
+@Table(name = "group_list")
 public class GroupData {
   @XStreamOmitField
+  @Id
+  @Column(name = "group_id")
   private int id = Integer.MAX_VALUE;
+
+  @Column(name = "group_name")
   private String name;
+
+  @Column(name = "group_header")
+  @Type(type = "text")
   private String header;
+
+  @Column(name = "group_footer")
+  @Type(type = "text")
   private String footer;
+
+  public Contacts getContacts() {
+    return new Contacts(contacts);
+  }
+
+  @ManyToMany (mappedBy = "groups")
+  private Set<ContactData> contacts = new HashSet<ContactData>();
 
   public int getId() {
     return id;
@@ -20,6 +43,22 @@ public class GroupData {
   public GroupData withName(String name) {
     this.name = name;
     return this;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    return id == groupData.id &&
+            name.equals(groupData.name) &&
+            header.equals(groupData.header) &&
+            footer.equals(groupData.footer);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, header, footer);
   }
 
   public GroupData withHeader(String header) {
@@ -43,20 +82,6 @@ public class GroupData {
             "id='" + id + '\'' +
             ", name='" + name + '\'' +
             '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return id == groupData.id &&
-            Objects.equals(name, groupData.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name);
   }
 
   public String getName() {

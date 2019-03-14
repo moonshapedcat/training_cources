@@ -27,6 +27,8 @@ public class ApplicationManager {
   public NavigationHelper navigationHelper;
   public GroupHelper groupHelper;
   public String browser;
+  public DbHelper dbHelper;
+
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -95,5 +97,9 @@ public class ApplicationManager {
   public void closeAlert() {
     wd.switchTo().alert().accept();
     wd.findElement(By.cssSelector("div.msgbox"));
+  }
+
+  public DbHelper db(){
+    return dbHelper;
   }
 }

@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import ru.stqa1.pft.addressbook.model.GroupData;
 import ru.stqa1.pft.addressbook.model.Groups;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase{
 
@@ -98,6 +96,9 @@ public class GroupHelper extends HelperBase{
       groupCash.add(new GroupData().withId(id).withName(name));
     }
     return new Groups(groupCash);
+  }
+    public boolean isThereContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 
 }

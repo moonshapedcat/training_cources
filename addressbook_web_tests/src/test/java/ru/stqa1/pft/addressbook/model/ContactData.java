@@ -2,27 +2,73 @@ package ru.stqa1.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+@Entity
+@Table(name = "addressbook")
 @XStreamAlias("contact")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+
+  @Column(name = "firstname")
   private String name;
   private String middlename;
+
+  @Column(name = "lastname")
   private String lastname;
+
+  @Column(name = "nickname")
   private String nickname;
+
+  @Column(name = "company")
   private String companyName;
+
+  @Column(name = "title")
   private String title;
+
+ @Transient
   private String allPhones;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+
+  @Transient
   private String email;
+
+  @Transient
   private String email2;
+
+  @Transient
   private String email3;
+
+  @Transient
   private String allEmails;
+
+  @ManyToMany (fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+             joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public ContactData withEmail(String email) {
     this.email = email;
@@ -31,6 +77,10 @@ public class ContactData {
 
   public String getEmail2() {
     return email2;
+  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   public ContactData withEmail2(String email2) {
@@ -193,5 +243,10 @@ public class ContactData {
   @Override
   public int hashCode() {
     return Objects.hash(id, name, lastname);
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }
