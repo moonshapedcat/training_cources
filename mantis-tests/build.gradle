@@ -13,7 +13,7 @@ dependencies{
     implementation 'org.subethamail:subethasmtp:3.1.7'
     implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
     implementation 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
+    implementation 'mysql:mysql-connector-java:8.0.15'
     implementation 'org.hibernate:hibernate-core:5.4.1.Final'
     
 }
@@ -33,4 +33,14 @@ task {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs= ["src/main/java"]
+        }
+        resources {
+            srcDirs= ["src/main/resources"]
+        }
+    }
+}
 

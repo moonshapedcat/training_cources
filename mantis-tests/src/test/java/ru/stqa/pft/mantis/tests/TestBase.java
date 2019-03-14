@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
 
 public class TestBase {
 
-  public static ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+  public static ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
 
  @BeforeSuite
   public void setUp() throws Exception {

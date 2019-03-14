@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-import ru.stqa.pft.mantis.model.MantisUser;
 import ru.stqa.pft.mantis.model.UserData;
 
 import java.io.File;
@@ -127,7 +126,8 @@ public class ApplicationManager {
 
   public UserData GetTestUser() {
     // ???
-    return new UserData(2, "user1551629138176", "user1551629138176@localhost.localdomain");//????
+    // return new UserData(2, "user1551629138176", "user1551629138176@localhost.localdomain");//????
+    return null;
   }
 
   public SoapHelper SoapHelper() {

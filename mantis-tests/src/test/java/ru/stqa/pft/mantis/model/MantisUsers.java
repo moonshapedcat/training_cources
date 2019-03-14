@@ -10,11 +10,11 @@ public class MantisUsers extends ForwardingSet<UserData> {
 
   private Set<UserData> delegateOb;
 
-  public MantisUsers(List<biz.futureware.mantis.rpc.soap.client.UserData> users) {
-    this.delegateOb = new HashSet<>();
-  }
+  /*public MantisUsers(List<biz.futureware.mantis.rpc.soap.client.UserData> users) {
+    this.delegateOb = new HashSet<UserData>();
+  }*/
 
-  public MantisUsers(Collection<UserData> users) {
+  public MantisUsers(List<UserData> users) {
     this.delegateOb = new HashSet<>(users);
   }
 
