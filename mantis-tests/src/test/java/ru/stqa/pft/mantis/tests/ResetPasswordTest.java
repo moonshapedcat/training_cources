@@ -21,19 +21,19 @@ public class ResetPasswordTest extends TestBase {
 
     @Test
     public void ResetPasswordTest() throws IOException {
-        MantisUsers users = app.db().users();
-        UserData selectedContact = users.iterator().next();
-        app.navigate().login();
-        app.navigate().openManageUsers();
-        app.navigate().pickUser(selectedContact);
-        app.navigate().resetPassword();
-        List<MailMessage> mailMessages = app.mail().waitForMail(1, 15000);
-        String resetLink = findResetLink(mailMessages, selectedContact.getEmail());
-        String newpassword = "newpassword";
-        app.registration().finish(resetLink, newpassword);
-        assertTrue(app.newSession().login(selectedContact.getUsername(),newpassword));
+        List<UserData> users = app.db().users();
+        UserData user = users.iterator().next();
+        app.AdminHelper().Login();
+        app.AdminHelper().ResetUserPassord(user.username);
 
+        long uniqueId = System.currentTimeMillis();
+        String newPassword = String.format("password%s", uniqueId);
+        List<MailMessage> mails = app.mail().waitForMail(1, 10000);
+        String confirmationLink = findResetLink(mails, user.email);
+        app.UserHelper().ResetPassword(confirmationLink, newPassword);
+        assertTrue(app.newSession().login(user.username, newPassword));
     }
+
     private String findResetLink(List<MailMessage> messages, String email) {
         MailMessage message = messages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
         VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
